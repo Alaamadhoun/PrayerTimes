@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "./components/Form";
 import Prayer from "./components/Prayers";
+import Titles from "./components/Titles";
 
 class App extends Component {
   state = {
@@ -22,8 +23,6 @@ class App extends Component {
       ` http://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}`
     );
     const data = await api.json();
-    this.setState({ person: data.timings });
-    console.log(data);
 
     if (city && country) {
       this.setState({
@@ -55,7 +54,9 @@ class App extends Component {
           <div className="main">
             <div className="container">
               <div className="row">
-                <div className="col-xs-5 title-container" />
+                <div className="col-xs-5 title-container">
+                  <Titles />
+                </div>
                 <div className="col-xs-7 form-container">
                   <Form getPrayer={this.getPrayer} />
                   <Prayer
